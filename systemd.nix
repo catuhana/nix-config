@@ -1,0 +1,6 @@
+{ ... }:
+{
+  systemd = {
+    sysusers.enable = true;
+  };
+}
