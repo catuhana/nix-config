@@ -3,6 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     disko = {
       url = "github:nix-community/disko/?ref=v1.12.0";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,6 +28,7 @@
           ./fonts.nix
           ./gnome.nix
           ./hardware.nix
+          ./home.nix
           ./locale.nix
           ./networking.nix
           ./nix.nix
@@ -31,7 +36,6 @@
           ./security.nix
           ./services.nix
           ./swap.nix
-          ./systemd.nix
           ./users.nix
           {
             system.stateVersion = "26.05";

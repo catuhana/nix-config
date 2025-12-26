@@ -4,9 +4,12 @@
     apparmor.enable = true;
     polkit.enable = true;
     rtkit.enable = true;
+
     sudo.enable = false;
     sudo-rs.enable = true;
+
     # confinement.enable = true;
+    
     tpm2 = {
       enable = true;
       abrmd.enable = true;
