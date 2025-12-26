@@ -48,6 +48,12 @@
             key = "~/.ssh/id_ed25519.pub";
           };
         };
+
+        gh = {
+          enable = true;
+
+          gitCredentialHelper.enable = true;
+        };
       };
     };
   };
