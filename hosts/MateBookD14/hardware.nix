@@ -1,11 +1,4 @@
 { pkgs, ... }:
-let
-  intelPackages =
-    ps: with ps; [
-      intel-media-driver
-      intel-vaapi-driver
-    ];
-in
 {
   services = {
     fwupd.enable = true;
@@ -21,8 +14,8 @@ in
     graphics = {
       enable32Bit = true;
 
-      extraPackages = intelPackages pkgs;
-      extraPackages32 = intelPackages pkgs.pkgsi686Linux;
+      extraPackages = [ pkgs.intel-media-driver ];
+      extraPackages32 = [ pkgs.pkgsi686Linux.intel-media-driver ];
     };
   };
 }
