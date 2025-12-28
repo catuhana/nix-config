@@ -17,7 +17,7 @@
     ../../modules/desktop/audio.nix
     ../../modules/desktop/fonts.nix
     ../../modules/desktop/gnome.nix
-    
+
     ../../modules/programs.nix
     ../../modules/services.nix
 

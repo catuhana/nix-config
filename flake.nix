@@ -13,13 +13,15 @@
     };
   };
 
-  outputs = { nixpkgs, ... }@inputs: {
-    nixosConfigurations.MateBookD14 = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./hosts/MateBookD14/default.nix
-      ];
+  outputs =
+    { nixpkgs, ... }@inputs:
+    {
+      nixosConfigurations.MateBookD14 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/MateBookD14/default.nix
+        ];
+      };
     };
-  };
 }
