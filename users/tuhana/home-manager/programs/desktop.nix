@@ -10,6 +10,9 @@
       {
         package = gnomeExtensions.caffeine;
       }
+      {
+        package = gnomeExtensions.appindicator;
+      }
     ];
   };
 }
