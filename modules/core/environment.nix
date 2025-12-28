@@ -11,8 +11,8 @@
       VISUAL = "edit";
     };
 
-    shellAliases = {
-      ".." = "cd ..";
-    };
+    # shellAliases = {
+    #   ".." = "cd ..";
+    # };
   };
 }

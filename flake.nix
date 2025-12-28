@@ -1,5 +1,5 @@
 {
-  description = "Minimal NixOS configuration";
+  description = "Tuhana's NixOS Configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -13,34 +13,13 @@
     };
   };
 
-  outputs =
-    { nixpkgs, disko, ... }@inputs:
-    {
-      nixosConfigurations.MateBookD14 = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-
-        modules = [
-          ./audio.nix
-          ./boot.nix
-          ./disks.nix
-          ./environment.nix
-          ./fonts.nix
-          ./gnome.nix
-          ./hardware.nix
-          ./home.nix
-          ./locale.nix
-          ./networking.nix
-          ./nix.nix
-          ./programs.nix
-          ./security.nix
-          ./services.nix
-          ./swap.nix
-          ./users.nix
-          {
-            system.stateVersion = "26.05";
-          }
-        ];
-      };
+  outputs = { nixpkgs, ... }@inputs: {
+    nixosConfigurations.MateBookD14 = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs; };
+      modules = [
+        ./hosts/MateBookD14/default.nix
+      ];
     };
+  };
 }

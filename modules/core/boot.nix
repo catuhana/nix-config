@@ -22,7 +22,6 @@
       nix-store-veritysetup.enable = true;
     };
 
-    plymouth.enable = true;
     tmp.cleanOnBoot = true;
   };
 }
