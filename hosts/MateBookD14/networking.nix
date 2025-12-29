@@ -5,6 +5,7 @@
 
     # Causes hangs on rebuilds, disable for now.
     # useNetworkd = true;
-    wireless.iwd.enable = true;
+
+    wireless.enable = true;
   };
 }
