@@ -6,6 +6,11 @@
     # Causes hangs on rebuilds, disable for now.
     # useNetworkd = true;
 
-    wireless.enable = true;
+    wireless = {
+      enable = false;
+      iwd.enable = true;
+    };
+
+    networkmanager.wifi.backend = "iwd";
   };
 }
