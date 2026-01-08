@@ -59,6 +59,18 @@
             in
             mkSystem "MateBookD14" [ "x86_64-linux" ] [ ];
         };
+
+        perSystem =
+          { pkgs, system, ... }:
+          {
+            devShells.default =
+              with pkgs;
+              mkShell {
+                packages = [
+                  nixfmt-tree
+                ];
+              };
+          };
       }
     );
 }
