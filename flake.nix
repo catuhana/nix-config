@@ -27,7 +27,7 @@
         flake = {
           nixosConfigurations =
             let
-              mkHost =
+              mkSystem =
                 name: systems: extraModules:
                 let
                   isMultiSystem = builtins.length systems > 1;
@@ -54,7 +54,7 @@
                   }) systems
                 );
             in
-            mkHost "MateBookD14" [ "x86_64-linux" ] [ ];
+            mkSystem "MateBookD14" [ "x86_64-linux" ] [ ];
         };
       }
     );
