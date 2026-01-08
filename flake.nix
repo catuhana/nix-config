@@ -28,29 +28,33 @@
           nixosConfigurations =
             let
               mkSystem =
-                name: systems:
-                let
-                  isMultiSystem = builtins.length systems > 1;
-                in
+                hostName: systems:
                 builtins.listToAttrs (
-                  map (system: {
-                    name = if isMultiSystem then "${name}.${system}" else name;
-                    value = inputs.nixpkgs.lib.nixosSystem {
-                      inherit system;
+                  map (
+                    system:
+                    let
+                      attrName = builtins.length systems > 1 ? "${hostName}.${system}" // hostName;
+                    in
+                    {
+                      name = attrName;
 
-                      specialArgs = { inherit inputs; };
+                      value = inputs.nixpkgs.lib.nixosSystem {
+                        inherit system;
 
-                      modules = [
-                        ./hosts/${name}
-                        (
-                          { ... }:
-                          {
-                            networking.hostName = name;
-                          }
-                        )
-                      ];
-                    };
-                  }) systems
+                        specialArgs = { inherit inputs; };
+
+                        modules = [
+                          ./hosts/${attrName}
+                          (
+                            { ... }:
+                            {
+                              networking.hostName = hostName;
+                            }
+                          )
+                        ];
+                      };
+                    }
+                  ) systems
                 );
             in
             mkSystem "MateBookD14" [ "x86_64-linux" ] [ ];
