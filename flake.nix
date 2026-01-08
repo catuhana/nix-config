@@ -44,7 +44,7 @@
                         specialArgs = { inherit inputs; };
 
                         modules = [
-                          ./hosts/${attrName}
+                          ./hosts/${hostName}
                           (
                             { ... }:
                             {
