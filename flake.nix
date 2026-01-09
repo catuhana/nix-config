@@ -63,13 +63,7 @@
         perSystem =
           { pkgs, system, ... }:
           {
-            devShells.default =
-              with pkgs;
-              mkShell {
-                packages = [
-                  nixfmt-tree
-                ];
-              };
+            formatter = pkgs.nixfmt-tree;
           };
       }
     );
