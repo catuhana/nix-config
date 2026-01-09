@@ -16,7 +16,7 @@
       },
       "original": {
         "owner": "nix-community",
-        "ref": "v1.12.0",
+        "ref": "latest",
         "repo": "disko",
         "type": "github"
       }
