@@ -1,25 +1,10 @@
 { inputs, pkgs, ... }:
 {
   imports = [
-    ./boot.nix
+    ./configuration.nix
     ./disks.nix
-    ./hardware.nix
 
-    ../../modules/core/boot.nix
-    ../../modules/core/environment.nix
-    ../../modules/core/locale.nix
-    ../../modules/core/networking.nix
-    ../../modules/core/nix.nix
-    ../../modules/core/security.nix
-    ../../modules/core/swap.nix
-
-    ../../modules/desktop/audio.nix
-    ../../modules/desktop/fonts.nix
-    ../../modules/desktop/gnome.nix
-
-    ../../modules/programs/nix-ld.nix
-
-    ../../modules/services/userborn.nix
+    ../../modules/nixos
 
     # TODO: Refactor to use a single users file?
     ../../users/tuhana/users.nix
