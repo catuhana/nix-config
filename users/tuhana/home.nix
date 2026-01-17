@@ -1,8 +1,7 @@
 { ... }:
 {
   imports = [
-    ./programs/desktop.nix
-    ./programs/git.nix
+    ../../modules/home-manager
   ];
 
   home.stateVersion = "26.05";

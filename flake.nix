@@ -44,7 +44,10 @@
                         specialArgs = { inherit inputs; };
 
                         modules = [
+                          inputs.home-manager.nixosModules.home-manager
+
                           ./hosts/${hostName}
+
                           (
                             { ... }:
                             {

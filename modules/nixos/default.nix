@@ -3,6 +3,7 @@
   imports = [
     ./core/boot.nix
     ./core/environment.nix
+    ./core/home-manager.nix
     ./core/locale.nix
     ./core/networking.nix
     ./core/nix.nix

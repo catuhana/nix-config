@@ -9,25 +9,6 @@
     # TODO: Refactor to use a single users file?
     ../../users/tuhana/users.nix
 
-    # TODO: Put `home-manager` module inside `flake-parts`'
-    # `modules` if it's ever going to be used in other
-    # hosts.
-    inputs.home-manager.nixosModules.home-manager
     inputs.disko.nixosModules.default
   ];
-
-  system.stateVersion = "26.05";
-
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-
-    extraSpecialArgs = { inherit inputs; };
-
-    users.tuhana = {
-      imports = [
-        ../../users/tuhana/home-manager
-      ];
-    };
-  };
 }

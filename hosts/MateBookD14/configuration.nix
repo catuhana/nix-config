@@ -28,4 +28,9 @@
     programs.nix-ld.enable = true;
     services.userborn.enable = true;
   };
+
+  # TODO: Maybe import this for every host?
+  home-manager.users.tuhana = import ../../users/tuhana/home.nix;
+
+  system.stateVersion = "26.05";
 }

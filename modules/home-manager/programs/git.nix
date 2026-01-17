@@ -1,7 +1,21 @@
-{ ... }:
+{ config, lib, ... }:
+let
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    ;
+
+  cfg = config.tuhana.programs.git;
+in
 {
-  programs = {
-    git = {
+  options.tuhana.programs.git = {
+    enable = mkEnableOption "Git version control system" // {
+      default = true;
+    };
+  };
+
+  config = mkIf cfg.enable {
+    programs.git = {
       enable = true;
 
       settings = {
@@ -21,10 +35,6 @@
         format = "ssh";
         key = "~/.ssh/id_ed25519.pub";
       };
-    };
-    gh = {
-      enable = true;
-      gitCredentialHelper.enable = true;
     };
   };
 }
