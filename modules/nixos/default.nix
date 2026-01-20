@@ -16,6 +16,7 @@
 
     ./programs/nix-ld.nix
 
+    ./services/scx.nix
     ./services/userborn.nix
   ];
 }
