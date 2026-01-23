@@ -32,6 +32,8 @@
     services.userborn.enable = true;
   };
 
+  networking.hostName = "MateBookD14";
+  
   # TODO: Maybe import this for every host?
   home-manager.users.tuhana = import ../../users/tuhana/home.nix;
 

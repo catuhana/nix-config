@@ -52,14 +52,6 @@
                         ]
                         ++ [
                           ./hosts/${hostName}
-                        ]
-                        ++ [
-                          (
-                            { ... }:
-                            {
-                              networking.hostName = hostName;
-                            }
-                          )
                         ];
                       };
                     }
