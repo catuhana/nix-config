@@ -50,7 +50,9 @@
             lib.concatLists (lib.mapAttrsToList (_: v: lib.attrNames v) systemOutputs)
           );
         in
-        lib.genAttrs outputNames (outputName: lib.genAttrs allSystems (system: systemOutputs.${system}.${outputName}));
+        lib.genAttrs outputNames (
+          outputName: lib.genAttrs allSystems (system: systemOutputs.${system}.${outputName})
+        );
     in
     {
       nixosConfigurations =
