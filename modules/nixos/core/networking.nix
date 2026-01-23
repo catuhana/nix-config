@@ -1,16 +1,13 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
   inherit (lib)
     mkIf
     mkMerge
-    mkOption
     mkEnableOption
-    types
     ;
 
   cfg = config.tuhana.core.networking.resolved;

@@ -1,13 +1,12 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
   inherit (lib)
-    mkMerge
     mkIf
+    mkMerge
     mkEnableOption
     ;
 

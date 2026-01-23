@@ -1,15 +1,12 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
   inherit (lib)
     mkIf
-    mkOption
     mkEnableOption
-    types
     ;
 
   cfg = config.tuhana.desktop.gnome;

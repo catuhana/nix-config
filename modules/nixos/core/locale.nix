@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -28,7 +27,8 @@ in
     time.timeZone = cfg.timeZone;
 
     i18n = {
-      defaultLocale = cfg.defaultLocale;
+      inherit (cfg) defaultLocale;
+
       extraLocales = [
         "tr_TR.UTF-8/UTF-8"
         "en_US.UTF-8/UTF-8"

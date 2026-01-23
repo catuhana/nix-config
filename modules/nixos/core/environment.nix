@@ -9,7 +9,6 @@ let
     mkIf
     mkMerge
     mkEnableOption
-    types
     ;
 
   cfg = config.tuhana.core.environment;
