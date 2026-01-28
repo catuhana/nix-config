@@ -81,6 +81,15 @@
     // perSystem (
       { pkgs, ... }:
       {
+        devShells.default =
+          with pkgs;
+          mkShell {
+            packages = [
+              nixd
+              nixfmt
+            ];
+          };
+
         formatter = pkgs.nixfmt-tree;
       }
     );
