@@ -14,9 +14,7 @@
 
       locale.timeZone = "Europe/Istanbul";
 
-      networking.resolved = {
-        mDNS = true;
-      };
+      networking.resolved.mDNS = true;
 
       security = {
         apparmor.enable = true;

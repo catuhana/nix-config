@@ -10,7 +10,7 @@ let
     mkEnableOption
     ;
 
-  cfg = config.tuhana.core.networking.resolved;
+  cfg = config.tuhana.core.networking;
 
   DNS = {
     ips = [
@@ -28,22 +28,36 @@ let
   };
 in
 {
-  options.tuhana.core.networking.resolved = {
-    enable = mkEnableOption "Use systemd-resolved for DNS" // {
+  options.tuhana.core.networking = {
+    useCustomDNS = mkEnableOption "Use custom DNS servers" // {
       default = true;
     };
 
-    mDNS = mkEnableOption "Enable Multicast DNS";
+    resolved = {
+      enable = mkEnableOption "Use systemd-resolved for DNS" // {
+        default = true;
+      };
+
+      mDNS = mkEnableOption "Enable Multicast DNS";
+    };
   };
 
   config = mkMerge [
     {
       networking = {
-        nameservers = DNS.ips;
         timeServers = [ "time.cloudflare.com" ];
       };
     }
-    (mkIf cfg.enable {
+    # FIXME: Should only be applied when
+    # environment is not `server`.
+    (mkIf cfg.useCustomDNS {
+      networking.nameservers = DNS.ips;
+      programs.captive-browser = {
+        enable = true;
+        interface = "wlp0s20f3";
+      };
+    })
+    (mkIf cfg.resolved.enable {
       services.resolved = {
         enable = true;
 
@@ -52,10 +66,10 @@ in
 
           DNSOverTLS = true;
           DNSSEC = true;
-          MulticastDNS = cfg.mDNS;
+          MulticastDNS = cfg.resolved.mDNS;
           LLMNR = false;
 
-          FallbackDNS = DNS.dot;
+          FallbackDNS = mkIf cfg.useCustomDNS DNS.dot;
         };
       };
     })
