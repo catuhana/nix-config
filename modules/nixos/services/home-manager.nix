@@ -9,10 +9,10 @@ let
     mkEnableOption
     ;
 
-  cfg = config.tuhana.core.home-manager;
+  cfg = config.tuhana.services.home-manager;
 in
 {
-  options.tuhana.core.home-manager = {
+  options.tuhana.services.home-manager = {
     enable = mkEnableOption "Home Manager" // {
       default = true;
     };

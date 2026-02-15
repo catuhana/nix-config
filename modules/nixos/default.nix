@@ -2,19 +2,20 @@
 {
   imports = [
     ./core/boot.nix
-    ./core/environment.nix
-    ./core/system.nix
-    ./core/home-manager.nix
     ./core/locale.nix
     ./core/networking.nix
     ./core/nix.nix
     ./core/security.nix
     ./core/swap.nix
+    ./core/system.nix
 
     ./desktop
 
+    ./programs/git.nix
+    ./programs/msedit.nix
     ./programs/nix-ld.nix
 
+    ./services/home-manager.nix
     ./services/scx.nix
     ./services/userborn.nix
   ];
