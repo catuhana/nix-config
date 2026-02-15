@@ -2,6 +2,11 @@
 {
   services.fwupd.enable = true;
 
+  boot.kernelParams = [
+    "xe.force_probe=46a6"
+    "i915.force_probe=!46a6"
+  ];
+
   hardware = {
     enableAllFirmware = true;
 
