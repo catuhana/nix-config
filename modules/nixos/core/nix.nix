@@ -26,8 +26,9 @@ in
           "flakes"
         ];
 
-        auto-optimise-store = true;
       };
+
+      optimise.automatic = true;
 
       gc = mkIf cfg.gc.enable {
         automatic = true;
