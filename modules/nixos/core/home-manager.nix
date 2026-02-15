@@ -13,7 +13,7 @@ let
 in
 {
   options.tuhana.core.home-manager = {
-    enable = mkEnableOption "Home Manager configuration" // {
+    enable = mkEnableOption "Home Manager" // {
       default = true;
     };
   };

@@ -14,13 +14,13 @@ let
 in
 {
   options.tuhana.core.security = {
-    apparmor.enable = mkEnableOption "Enable AppArmor";
+    apparmor.enable = mkEnableOption "AppArmor";
 
-    useSudoRs = mkEnableOption "Use `sudo-rs` instead of `sudo`" // {
+    useSudoRs = mkEnableOption "`sudo-rs` instead of `sudo`" // {
       default = true;
     };
 
-    tpm2.enable = mkEnableOption "Enable TPM2 support";
+    tpm2.enable = mkEnableOption "TPM2 support";
   };
 
   config = mkMerge [

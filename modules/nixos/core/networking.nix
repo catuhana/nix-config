@@ -29,16 +29,16 @@ let
 in
 {
   options.tuhana.core.networking = {
-    useCustomDNS = mkEnableOption "Use custom DNS servers" // {
+    useCustomDNS = mkEnableOption "custom DNS servers" // {
       default = true;
     };
 
     resolved = {
-      enable = mkEnableOption "Use systemd-resolved for DNS" // {
+      enable = mkEnableOption "systemd-resolved for DNS" // {
         default = true;
       };
 
-      mDNS = mkEnableOption "Enable Multicast DNS";
+      mDNS = mkEnableOption "Multicast DNS";
     };
   };
 

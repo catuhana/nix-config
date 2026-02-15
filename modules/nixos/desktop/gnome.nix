@@ -13,7 +13,7 @@ let
 in
 {
   options.tuhana.desktop.gnome = {
-    enable = mkEnableOption "GNOME desktop environment";
+    enable = mkEnableOption "GNOME";
   };
 
   config = mkIf cfg.enable {

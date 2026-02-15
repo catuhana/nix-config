@@ -9,9 +9,7 @@ let
 in
 {
   options.tuhana.services.scx = {
-    enable = mkEnableOption "Enable sched_ext" // {
-      default = true;
-    };
+    enable = mkEnableOption "sched_ext";
   };
 
   config = mkIf cfg.enable {

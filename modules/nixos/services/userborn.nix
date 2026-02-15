@@ -9,7 +9,7 @@ let
 in
 {
   options.tuhana.services.userborn = {
-    enable = mkEnableOption "Enable Userborn";
+    enable = mkEnableOption "userborn";
   };
 
   config = mkIf cfg.enable {

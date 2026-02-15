@@ -27,6 +27,7 @@
     desktop.gnome.enable = true;
 
     programs.nix-ld.enable = true;
+    services.scx.enable = true;
     services.userborn.enable = true;
   };
 

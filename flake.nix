@@ -24,7 +24,6 @@
     inputs@{
       nixpkgs,
       flake-parts,
-      systems,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {

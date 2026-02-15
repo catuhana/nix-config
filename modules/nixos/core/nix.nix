@@ -13,7 +13,7 @@ let
 in
 {
   options.tuhana.core.nix = {
-    gc.enable = mkEnableOption "Enable automatic garbage collection";
+    gc.enable = mkEnableOption "automatic garbage collection";
   };
 
   config = {

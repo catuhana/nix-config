@@ -15,10 +15,10 @@ let
 in
 {
   options.tuhana.core.environment = {
-    msedit = mkEnableOption "Install Microsoft Editor" // {
+    msedit = mkEnableOption "Microsoft Editor" // {
       default = true;
     };
-    git = mkEnableOption "Install Git" // {
+    git = mkEnableOption "Git" // {
       default = true;
     };
   };

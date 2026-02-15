@@ -17,7 +17,7 @@ let
 in
 {
   options.tuhana.desktop.gnome = {
-    enable = mkEnableOption "GNOME desktop environment" // {
+    enable = mkEnableOption "GNOME" // {
       default = hostGnomeEnabled;
     };
   };

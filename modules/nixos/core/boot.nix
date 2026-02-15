@@ -23,9 +23,9 @@ in
       default = pkgs.linuxPackages_latest;
     };
 
-    secureBoot.enable = mkEnableOption "Enable Secure Boot";
-    silentBoot.enable = mkEnableOption "Enable silent boot";
-    plymouth.enable = mkEnableOption "Enable Plymouth";
+    secureBoot.enable = mkEnableOption "secure boot";
+    silentBoot.enable = mkEnableOption "silent boot";
+    plymouth.enable = mkEnableOption "Plymouth";
   };
 
   config = mkMerge [

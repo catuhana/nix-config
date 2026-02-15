@@ -9,7 +9,7 @@ let
 in
 {
   options.tuhana.programs.nix-ld = {
-    enable = mkEnableOption "Enable nix-ld";
+    enable = mkEnableOption "nix-ld";
   };
 
   config = mkIf cfg.enable {

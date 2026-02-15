@@ -14,7 +14,7 @@ let
 in
 {
   options.tuhana.desktop.audio = {
-    enable = mkEnableOption "Enable audio" // {
+    enable = mkEnableOption "audio" // {
       default = desktopEnabled;
     };
   };

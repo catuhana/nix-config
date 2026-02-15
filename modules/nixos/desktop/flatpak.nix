@@ -14,7 +14,7 @@ let
 in
 {
   options.tuhana.desktop.flatpak = {
-    enable = mkEnableOption "Enable Flatpak" // {
+    enable = mkEnableOption "Flatpak" // {
       default = desktopEnabled;
     };
   };

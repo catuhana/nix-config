@@ -9,7 +9,7 @@ let
 in
 {
   options.tuhana.programs.git = {
-    enable = mkEnableOption "Git version control system" // {
+    enable = mkEnableOption "Git" // {
       default = true;
     };
   };
@@ -26,7 +26,6 @@ in
         user = {
           name = "tuhana";
           email = "tuhana.cat+git@gmail.com";
-          signingkey = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
         };
       };
 
