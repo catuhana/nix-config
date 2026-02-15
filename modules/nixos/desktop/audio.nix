@@ -10,7 +10,7 @@ let
     ;
 
   cfg = config.tuhana.desktop.audio;
-  desktopEnabled = config.tuhana.desktop.gnome.enable;
+  desktopEnabled = config.tuhana.desktop.enable;
 in
 {
   options.tuhana.desktop.audio = {

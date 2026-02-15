@@ -6,10 +6,13 @@ let
     ;
 
   cfg = config.tuhana.services.scx;
+  kind = config.tuhana.system.kind;
 in
 {
   options.tuhana.services.scx = {
-    enable = mkEnableOption "sched_ext";
+    enable = mkEnableOption "sched_ext" // {
+      default = kind == "laptop" || kind == "desktop";
+    };
   };
 
   config = mkIf cfg.enable {

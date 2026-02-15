@@ -26,6 +26,9 @@
       flake-parts,
       ...
     }:
+    let
+      mkSystem = import ./lib/mkSystem.nix { inherit inputs; };
+    in
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
         "aarch64-darwin"
@@ -48,20 +51,11 @@
 
       flake = {
         nixosConfigurations = {
-          MateBookD14 = nixpkgs.lib.nixosSystem {
+          MateBookD14 = mkSystem {
+            hostName = "MateBookD14";
             system = "x86_64-linux";
-
-            specialArgs = {
-              hostName = "MateBookD14";
-              inherit inputs;
-            };
-
+            kind = "laptop";
             modules = [
-              inputs.home-manager.nixosModules.home-manager
-              inputs.disko.nixosModules.default
-              inputs.lanzaboote.nixosModules.lanzaboote
-            ]
-            ++ [
               ./hosts/MateBookD14
             ];
           };

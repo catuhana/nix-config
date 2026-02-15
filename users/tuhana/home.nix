@@ -1,13 +1,13 @@
-{ ... }:
+{ osConfig, ... }:
+let
+  kind = osConfig.tuhana.system.kind;
+in
 {
   imports = [
     ../../modules/home-manager
   ];
 
-  # FIXME: This should NOT be enabled on server hosts.
-  # Related TODO in TODO.md. FIX BEFORE ADDING MORE
-  # HOSTS!
-  tuhana.programs.vscode.enable = true;
+  tuhana.programs.vscode.enable = kind != "server";
 
   home.stateVersion = "26.05";
 }

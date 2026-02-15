@@ -15,6 +15,7 @@
       locale.timeZone = "Europe/Istanbul";
 
       networking.resolved.mDNS = true;
+      networking.captiveBrowser.interface = "wlp0s20f3";
 
       security = {
         apparmor.enable = true;
@@ -27,7 +28,6 @@
     desktop.gnome.enable = true;
 
     programs.nix-ld.enable = true;
-    services.scx.enable = true;
     services.userborn.enable = true;
   };
 

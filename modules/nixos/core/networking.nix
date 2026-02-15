@@ -7,10 +7,13 @@ let
   inherit (lib)
     mkIf
     mkMerge
+    mkOption
     mkEnableOption
+    types
     ;
 
   cfg = config.tuhana.core.networking;
+  kind = config.tuhana.system.kind;
 
   DNS = {
     ips = [
@@ -33,6 +36,12 @@ in
       default = true;
     };
 
+    captiveBrowser.interface = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      description = "Wireless interface for captive-browser. Set to null to disable.";
+    };
+
     resolved = {
       enable = mkEnableOption "systemd-resolved for DNS" // {
         default = true;
@@ -48,13 +57,13 @@ in
         timeServers = [ "time.cloudflare.com" ];
       };
     }
-    # FIXME: Should only be applied when
-    # environment is not `server`.
     (mkIf cfg.useCustomDNS {
       networking.nameservers = DNS.ips;
+    })
+    (mkIf (cfg.useCustomDNS && cfg.captiveBrowser.interface != null && kind != "server") {
       programs.captive-browser = {
         enable = true;
-        interface = "wlp0s20f3";
+        interface = cfg.captiveBrowser.interface;
       };
     })
     (mkIf cfg.resolved.enable {
