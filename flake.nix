@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,78 +21,52 @@
   };
 
   outputs =
-    {
-      self,
+    inputs@{
       nixpkgs,
-      home-manager,
-      disko,
-      lanzaboote,
-    }@inputs:
-    let
-      inherit (nixpkgs)
-        lib
-        ;
+      flake-parts,
+      systems,
+      ...
+    }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "aarch64-darwin"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "x86_64-linux"
+      ];
 
       perSystem =
-        f:
-        let
-          allSystems = lib.systems.flakeExposed;
-
-          systemOutputs = lib.genAttrs allSystems (
-            system:
-            f {
-              inherit system inputs;
-
-              pkgs = import nixpkgs {
-                inherit system;
-              };
-            }
-          );
-          outputNames = lib.unique (
-            lib.concatLists (lib.mapAttrsToList (_: v: lib.attrNames v) systemOutputs)
-          );
-        in
-        lib.genAttrs outputNames (
-          outputName: lib.genAttrs allSystems (system: systemOutputs.${system}.${outputName})
-        );
-    in
-    {
-      nixosConfigurations =
-        let
-          mkSystem = hostName: system: {
-            ${hostName} = lib.nixosSystem {
-              inherit system;
-
-              specialArgs = {
-                inherit hostName;
-              };
-
-              modules = [
-                home-manager.nixosModules.home-manager
-                disko.nixosModules.default
-                lanzaboote.nixosModules.lanzaboote
-              ]
-              ++ [
-                ./hosts/${hostName}
-              ];
-            };
-          };
-        in
-        mkSystem "MateBookD14" "x86_64-linux";
-    }
-    // perSystem (
-      { pkgs, ... }:
-      {
-        devShells.default =
-          with pkgs;
-          mkShell {
-            packages = [
+        { pkgs, ... }:
+        {
+          devShells.default = pkgs.mkShell {
+            packages = with pkgs; [
               nixd
-              nixfmt
             ];
           };
 
-        formatter = pkgs.nixfmt-tree;
-      }
-    );
+          formatter = pkgs.nixfmt-tree;
+        };
+
+      flake = {
+        nixosConfigurations = {
+          MateBookD14 = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+
+            specialArgs = {
+              hostName = "MateBookD14";
+              inherit inputs;
+            };
+
+            modules = [
+              inputs.home-manager.nixosModules.home-manager
+              inputs.disko.nixosModules.default
+              inputs.lanzaboote.nixosModules.lanzaboote
+            ]
+            ++ [
+              ./hosts/MateBookD14
+            ];
+          };
+        };
+      };
+    };
 }
