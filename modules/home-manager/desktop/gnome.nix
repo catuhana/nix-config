@@ -36,6 +36,12 @@ in
         {
           package = appindicator;
         }
+        {
+          package = just-perfection;
+        }
+        {
+          package = unite;
+        }
       ];
     };
   };
