@@ -36,9 +36,6 @@ in
         {
           package = appindicator;
         }
-        {
-          package = gsconnect;
-        }
       ];
     };
   };
