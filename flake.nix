@@ -22,7 +22,6 @@
 
   outputs =
     inputs@{
-      nixpkgs,
       flake-parts,
       ...
     }:
@@ -31,11 +30,19 @@
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
-        "aarch64-darwin"
+        "x86_64-linux"
         "aarch64-linux"
         "x86_64-darwin"
-        "x86_64-linux"
+        "aarch64-darwin"
       ];
+
+      flake.nixosConfigurations = {
+        MateBookD14 = mkSystem {
+          hostName = "MateBookD14";
+          system = "x86_64-linux";
+          kind = "laptop";
+        };
+      };
 
       perSystem =
         { pkgs, ... }:
@@ -48,18 +55,5 @@
 
           formatter = pkgs.nixfmt-tree;
         };
-
-      flake = {
-        nixosConfigurations = {
-          MateBookD14 = mkSystem {
-            hostName = "MateBookD14";
-            system = "x86_64-linux";
-            kind = "laptop";
-            modules = [
-              ./hosts/MateBookD14
-            ];
-          };
-        };
-      };
     };
 }

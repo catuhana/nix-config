@@ -3,21 +3,21 @@
   hostName,
   system,
   kind,
-  modules ? [ ],
+  extraModules ? [ ],
 }:
 inputs.nixpkgs.lib.nixosSystem {
   inherit system;
 
   specialArgs = {
-    inherit hostName inputs;
+    inherit hostName;
   };
 
   modules = [
     inputs.home-manager.nixosModules.home-manager
     inputs.disko.nixosModules.default
     inputs.lanzaboote.nixosModules.lanzaboote
-
-    { tuhana.system.kind = kind; }
   ]
-  ++ modules;
+  ++ [ (inputs.self + /hosts/${hostName}) ]
+  ++ [ { tuhana.system.kind = kind; } ]
+  ++ extraModules;
 }
