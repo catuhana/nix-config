@@ -4,6 +4,8 @@ let
 in
 {
   users.users.tuhana = {
+    description = "Tuhana GAYRETLİ";
+
     isNormalUser = true;
     extraGroups = [ "wheel" ];
   };
