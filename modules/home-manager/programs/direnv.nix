@@ -19,7 +19,7 @@ in
     programs = {
       direnv = {
         enable = true;
-        enableBashIntegration = mkIf config.programs.bash.enable true;
+        enableBashIntegration = config.programs.bash.enable;
 
         nix-direnv.enable = true;
       };

@@ -10,7 +10,7 @@ let
     ;
 
   cfg = config.tuhana.programs.gh;
-  homeGitEnabled = config.tuhana.programs.git.enable or false;
+  homeGitEnabled = config.tuhana.programs.git.enable;
 in
 {
   options.tuhana.programs.gh = {
