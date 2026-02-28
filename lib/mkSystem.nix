@@ -6,13 +6,14 @@
   extraModules ? [ ],
 }:
 inputs.nixpkgs.lib.nixosSystem {
-  inherit system;
-
   specialArgs = {
     inherit hostName;
   };
 
   modules = [
+    { nixpkgs.hostPlatform = system; }
+  ]
+  ++ [
     inputs.home-manager.nixosModules.home-manager
     inputs.disko.nixosModules.default
     inputs.lanzaboote.nixosModules.lanzaboote
