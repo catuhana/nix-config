@@ -21,10 +21,10 @@
   };
 
   outputs =
-    inputs@{
+    {
       flake-parts,
       ...
-    }:
+    }@inputs:
     let
       mkSystem = import ./lib/mkSystem.nix { inherit inputs; };
     in
