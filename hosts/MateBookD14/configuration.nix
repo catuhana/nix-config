@@ -25,8 +25,6 @@
 
     desktop.enable = true;
     desktop.gnome.enable = true;
-
-    programs.nix-ld.enable = true;
   };
 
   networking.hostName = hostName;

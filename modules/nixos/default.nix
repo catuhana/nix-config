@@ -13,7 +13,6 @@
 
     ./programs/git.nix
     ./programs/msedit.nix
-    ./programs/nix-ld.nix
 
     ./services/home-manager.nix
     ./services/scx.nix
