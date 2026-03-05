@@ -45,12 +45,7 @@ in
         };
 
         initrd = {
-          systemd = {
-            enable = true;
-            dmVerity.enable = true;
-          };
-
-          nix-store-veritysetup.enable = true;
+          systemd.enable = true;
         };
 
         tmp.cleanOnBoot = true;
