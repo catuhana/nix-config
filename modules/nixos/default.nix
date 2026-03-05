@@ -15,6 +15,7 @@
     ./programs/msedit.nix
 
     ./services/home-manager.nix
+    ./services/openssh.nix
     ./services/scx.nix
   ];
 }

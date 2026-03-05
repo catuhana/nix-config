@@ -25,6 +25,8 @@
 
     desktop.enable = true;
     desktop.gnome.enable = true;
+
+    services.openssh.enable = true;
   };
 
   networking.hostName = hostName;
