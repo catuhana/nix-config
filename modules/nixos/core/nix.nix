@@ -30,15 +30,14 @@ in
           "nix-command"
           "flakes"
         ];
-
       };
 
       optimise.automatic = true;
 
       gc = mkIf cfg.gc.enable {
         automatic = true;
-        dates = "daily";
-        options = "--delete-older-than 7d";
+        dates = "weekly";
+        options = "--delete-older-than 14d";
       };
     };
   };
