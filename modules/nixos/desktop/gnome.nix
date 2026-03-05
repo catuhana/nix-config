@@ -37,7 +37,6 @@ in
               "scale-monitor-framebuffer" # Fractional scaling
               "variable-refresh-rate"
               "xwayland-native-scaling"
-              "autoclose-xwayland"
             ];
           };
         };
