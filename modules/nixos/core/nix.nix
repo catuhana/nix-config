@@ -15,7 +15,7 @@ in
 {
   options.tuhana.core.nix = {
     gc.enable = mkEnableOption "automatic garbage collection" // {
-      enable = true;
+      default = true;
     };
   };
 
