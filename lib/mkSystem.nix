@@ -7,7 +7,7 @@
 }:
 inputs.nixpkgs.lib.nixosSystem {
   specialArgs = {
-    inherit hostName;
+    inherit inputs;
   };
 
   modules = [
@@ -22,5 +22,6 @@ inputs.nixpkgs.lib.nixosSystem {
   ]
   ++ [ (inputs.self + /hosts/${hostName}) ]
   ++ [ { tuhana.system.kind = kind; } ]
+  ++ [ { networking.hostName = hostName; } ]
   ++ extraModules;
 }

@@ -1,4 +1,4 @@
-{ hostName, ... }:
+{ ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -28,8 +28,6 @@
 
     services.openssh.enable = true;
   };
-
-  networking.hostName = hostName;
 
   system.stateVersion = "26.05";
 }
