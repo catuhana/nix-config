@@ -32,6 +32,7 @@ let
 in
 {
   options.tuhana.core.networking = {
+    # TODO: Rename this to something more conventional.
     useCustomDNS = mkEnableOption "custom DNS servers" // {
       default = true;
     };
@@ -72,12 +73,12 @@ in
         settings.Resolve = {
           Domains = [ "~." ];
 
+          DNS = mkIf cfg.useCustomDNS DNS.dot;
           DNSOverTLS = true;
           DNSSEC = true;
+          
           MulticastDNS = cfg.resolved.mDNS;
           LLMNR = false;
-
-          FallbackDNS = mkIf cfg.useCustomDNS DNS.dot;
         };
       };
     })
