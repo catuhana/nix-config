@@ -17,6 +17,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    services.scx.enable = true;
+    services.scx = {
+      enable = true;
+      scheduler = mkDefault "scx_lavd";
+    };
   };
 }
