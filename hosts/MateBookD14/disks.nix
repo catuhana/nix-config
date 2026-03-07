@@ -33,7 +33,6 @@
                 type = "luks";
 
                 settings = {
-                  allowDiscards = true;
                   bypassWorkqueues = true;
                   crypttabExtraOpts = [ "tpm2-device=auto" ];
                 };
