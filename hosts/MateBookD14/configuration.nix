@@ -14,7 +14,6 @@
 
       locale.timeZone = "Europe/Istanbul";
 
-      networking.resolved.mDNS = true;
       networking.captiveBrowser.interface = "wlp0s20f3";
 
       security = {
