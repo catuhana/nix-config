@@ -63,8 +63,6 @@ in
         { package = blur-my-shell; }
         { package = caffeine; }
         { package = appindicator; }
-        { package = just-perfection; }
-        { package = unite; }
       ];
     };
 
