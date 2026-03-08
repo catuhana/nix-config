@@ -20,7 +20,10 @@ in
       ../modules/home-manager
     ];
 
-    tuhana.programs.vscode.enable = kind != "server";
+    tuhana = {
+      programs.vscode.enable = kind != "server";
+      desktop.gnome.wallpaper = ../resources/wallpapers/tomb-raider.png;
+    };
 
     home.stateVersion = "26.05";
   };
