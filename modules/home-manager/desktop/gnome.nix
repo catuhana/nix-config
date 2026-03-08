@@ -24,6 +24,28 @@ in
       default = hostGnomeEnabled;
     };
 
+    extensions = mkOption {
+      type = types.listOf (
+        types.submodule {
+          options = {
+            extension = mkOption {
+              type = types.package;
+            };
+
+            enable = mkOption {
+              type = types.bool;
+              default = true;
+            };
+          };
+        }
+      );
+      default = with pkgs.gnomeExtensions; [
+        { extension = blur-my-shell; }
+        { extension = caffeine; }
+        { extension = appindicator; }
+      ];
+    };
+
     settings = {
       wallpaper = mkOption {
         type = types.nullOr (
@@ -59,14 +81,21 @@ in
     programs.gnome-shell = {
       enable = true;
 
-      extensions = with pkgs.gnomeExtensions; [
-        { package = blur-my-shell; }
-        { package = caffeine; }
-        { package = appindicator; }
-      ];
+      extensions = map (
+        { extension, ... }:
+        {
+          inherit extension;
+        }
+      ) cfg.extensions;
     };
 
     dconf.settings = {
+      "org/gnome/shell" = {
+        enabled-extensions = map ({ extension, ... }: extension.extensionUuid) (
+          builtins.filter ({ enable, ... }: enable) cfg.extensions
+        );
+      };
+
       "org/gnome/desktop/background" =
         let
           toFileURI =
