@@ -126,7 +126,6 @@ in
 
       "org/gnome/desktop/peripherals/touchpad" = {
         natural-scroll = false;
-        two-finger-scrolling-enabled = true; # TODO: This might be the default? Check it.
       };
     };
   };

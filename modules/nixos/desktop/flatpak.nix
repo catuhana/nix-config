@@ -21,7 +21,6 @@ in
 
   config = mkIf cfg.enable {
     services.flatpak.enable = true;
-    # TODO: Later might need to enable `fonts.fontsDir`
-    # and configure if needed.
+    # Later might need to enable `fonts.fontsDir` and configure as needed.
   };
 }
