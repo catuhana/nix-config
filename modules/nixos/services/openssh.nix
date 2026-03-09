@@ -9,7 +9,9 @@ let
 in
 {
   options.tuhana.services.openssh = {
-    enable = mkEnableOption "OpenSSH";
+    enable = mkEnableOption "OpenSSH" // {
+      default = true;
+    };
   };
 
   config = mkIf cfg.enable {
