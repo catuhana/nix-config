@@ -20,6 +20,7 @@
       caden.programs.provides.gh
       caden.programs.provides.direnv
       caden.programs.provides.vscode
+      caden.programs.provides.starship
       caden.programs.provides.git.provides.users.provides.tuhana
     ];
 

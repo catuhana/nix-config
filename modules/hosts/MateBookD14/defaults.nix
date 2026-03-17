@@ -31,6 +31,7 @@
           boot
           gnome
           locale
+          networking
           programs
           security
           services
@@ -49,6 +50,11 @@
 
         locale.provides.tr_TR
         locale.provides.en_GB
+
+        networking
+        networking.provides.resolved
+        networking.provides.resolved.provides.mdns
+        networking.provides.dns.provides.cloudflare
 
         programs.provides.git
         programs.provides.msedit
