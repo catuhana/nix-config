@@ -7,11 +7,31 @@
         den.provides.primary-user
       ];
 
-      # FIXME: These should be host-specific.
-      nixos.system.stateVersion = "26.05";
-      homeManager.home.stateVersion = "26.05";
-    };
+      schema.user.classes = [ "homeManager" ];
 
-    schema.user.classes = [ "homeManager" ];
+      nixos =
+        { pkgs, ... }:
+        {
+          nixpkgs.config.allowUnfree = true;
+
+          nix = {
+            package = pkgs.lixPackageSets.stable.lix;
+
+            settings = {
+              experimental-features = [
+                "nix-command"
+                "flakes"
+                "cgroups"
+                "auto-allocate-uids"
+              ];
+
+              use-cgroups = true;
+              auto-allocate-uids = true;
+            };
+
+            optimise.automatic = true;
+          };
+        };
+    };
   };
 }
