@@ -32,18 +32,39 @@
       };
 
       provides.blur-my-shell = {
-        homeManager.programs.gnome-shell.extensions =
-          { pkgs, ... }: with pkgs.gnomeExtensions; { package = blur-my-shell; };
+        homeManager =
+          { pkgs, ... }:
+          {
+            programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
+              {
+                package = blur-my-shell;
+              }
+            ];
+          };
       };
 
       provides.caffeine = {
-        homeManager.programs.gnome-shell.extensions =
-          { pkgs, ... }: with pkgs.gnomeExtensions; { package = caffeine; };
+        homeManager =
+          { pkgs, ... }:
+          {
+            programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
+              {
+                package = caffeine;
+              }
+            ];
+          };
       };
 
       provides.appindicator = {
-        homeManager.programs.gnome-shell.extensions =
-          { pkgs, ... }: with pkgs.gnomeExtensions; { package = appindicator; };
+        homeManager =
+          { pkgs, ... }:
+          {
+            programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
+              {
+                package = appindicator;
+              }
+            ];
+          };
       };
     };
 
@@ -54,13 +75,12 @@
           {
             dconf.settings."org/gnome/desktop/background" =
               let
-                and-the-circus-leaves-town = pkgs.runCommand {
+                and-the-circus-leaves-town = pkgs.runCommand "and-the-circus-leaves-town" {
                   src = pkgs.fetchurl {
                     url = "https://coverartarchive.org/release/fafca640-a7f6-49bc-92d1-2d0754662b47/front";
                     hash = "sha256-6LBrAoVAtugrrfwao2nQfMApPVo/HiQBQxLfJchMX+U=";
                     curlOptsList = [ "-L" ];
                   };
-
                   nativeBuildInputs = [ pkgs.libjpeg_turbo ];
                 } "jpegtran -crop 1200x750+0+198 -copy none $src >$out";
               in
