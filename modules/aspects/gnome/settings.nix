@@ -1,5 +1,14 @@
 {
+  __findFile ? __findFile,
+  ...
+}:
+{
   caden.gnome.provides.settings = {
+    includes = [
+      <caden/gnome/settings/accent-colour/purple>
+      <caden/gnome/settings/wallpapers/and-the-circus-leaves-town>
+    ];
+
     provides.wallpapers.provides.and-the-circus-leaves-town.homeManager =
       { pkgs, ... }:
       {

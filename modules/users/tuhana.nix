@@ -1,17 +1,15 @@
 {
-  den,
   __findFile ? __findFile,
   ...
 }:
 {
   den.aspects.tuhana = {
     includes = [
-      (den._.user-shell "zsh")
+      (<den/user-shell> "zsh")
       <den/primary-user>
 
       <caden/gnome/extensions>
-      <caden/gnome/settings/accent-colour/purple>
-      <caden/gnome/settings/wallpapers/and-the-circus-leaves-town>
+      <caden/gnome/settings>
 
       <caden/programs/zsh>
       <caden/programs/zsh/plugins>
