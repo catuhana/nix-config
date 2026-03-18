@@ -1,28 +1,27 @@
-{ den, caden, ... }:
+{
+  den,
+  __findFile ? __findFile,
+  ...
+}:
 {
   den.aspects.tuhana = {
     includes = [
       (den._.user-shell "zsh")
+      <den/primary-user>
 
-      caden.gnome._.gnome-extensions
-      caden.gnome._.gnome-extensions._.blur-my-shell
-      caden.gnome._.gnome-extensions._.caffeine
-      caden.gnome._.gnome-extensions._.appindicator
+      <caden/gnome/extensions>
+      <caden/gnome/settings/accent-colour/purple>
+      <caden/gnome/settings/wallpapers/and-the-circus-leaves-town>
 
-      caden.gnome._.gnome-settings._.accent-colour._.purple
-      caden.gnome._.gnome-settings._.wallpapers._.and-the-circus-leaves-town
+      <caden/programs/zsh>
+      <caden/programs/zsh/plugins>
 
-      caden.programs._.zsh
-      caden.programs._.zsh._.plugins._.zsh-autosuggestions
-      caden.programs._.zsh._.plugins._.zsh-syntax-highlighting
-      caden.programs._.zsh._.plugins._.zsh-mommy
-
-      caden.programs._.gh
-      caden.programs._.direnv
-      caden.programs._.vscode
-      caden.programs._.starship
-      caden.programs._.git
-      caden.programs._.git._.users._.tuhana
+      <caden/programs/gh>
+      <caden/programs/direnv>
+      <caden/programs/vscode>
+      <caden/programs/starship>
+      <caden/programs/git>
+      <caden/programs/git/users/tuhana>
     ];
 
     nixos.users.users.tuhana = {

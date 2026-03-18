@@ -5,6 +5,7 @@ let
     "aarch64-linux"
     "aarch64-darwin"
   ];
+
   forAllSystems = inputs.nixpkgs.lib.genAttrs systems;
 in
 {

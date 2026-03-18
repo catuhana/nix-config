@@ -1,4 +1,7 @@
-{ caden, ... }:
+{
+  __findFile ? __findFile,
+  ...
+}:
 {
   den.hosts.x86_64-linux.MateBookD14 = {
     users.tuhana = { };
@@ -24,50 +27,36 @@
         system.stateVersion = "26.05";
       };
 
-    includes =
-      let
-        inherit (caden)
-          audio
-          boot
-          gnome
-          locale
-          networking
-          programs
-          security
-          services
-          time
-          ;
-      in
-      [
-        audio
+    includes = [
+      <caden/audio>
 
-        boot
-        boot._.secure-boot
-        boot._.silent-boot
-        boot._.plymouth
+      <caden/boot>
+      <caden/boot/secure-boot>
+      <caden/boot/silent-boot>
+      <caden/boot/plymouth>
 
-        gnome
+      <caden/gnome>
 
-        locale._.tr_TR
-        locale._.en_GB
+      <caden/locale/tr_TR>
+      <caden/locale/en_GB>
 
-        networking
-        networking._.resolved
-        networking._.resolved._.mdns
-        networking._.dns._.cloudflare
+      <caden/networking>
+      <caden/networking/resolved>
+      <caden/networking/resolved/mdns>
+      <caden/networking/dns/cloudflare>
 
-        programs._.git
-        programs._.msedit
+      <caden/programs/git>
+      <caden/programs/msedit>
 
-        security._.apparmor
-        security._.tpm2
+      <caden/security/apparmor>
+      <caden/security/tpm2>
 
-        services._.flatpak
-        services._.openssh
-        services._.scx
+      <caden/services/flatpak>
+      <caden/services/openssh>
+      <caden/services/scx>
 
-        time
-        time._.Istanbul
-      ];
+      <caden/time>
+      <caden/time/Istanbul>
+    ];
   };
 }

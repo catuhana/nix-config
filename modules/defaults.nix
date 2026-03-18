@@ -1,11 +1,13 @@
-{ den, ... }:
+{
+  __findFile ? __findFile,
+  ...
+}:
 {
   den = {
     default = {
       includes = [
-        den._.hostname
-        den._.define-user
-        den._.primary-user
+        <den/hostname>
+        <den/define-user>
       ];
 
       nixos =
