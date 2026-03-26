@@ -15,7 +15,9 @@
           provides.accent-colour = {
             provides.purple = {
               homeManager = _: {
-                dconf.settings."org/gnome/desktop/interface".accent-color = "purple";
+                dconf.settings."org/gnome/desktop/interface" = {
+                  accent-color = "purple";
+                };
               };
             };
           };
