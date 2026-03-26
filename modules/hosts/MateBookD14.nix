@@ -42,9 +42,28 @@
     ];
 
     nixos =
-      { pkgs, ... }:
+      { pkgs, lib, ... }:
       {
         imports = [ inputs.disko.nixosModules.default ];
+
+        specialisation.gaming.configuration = {
+          imports = [ inputs.jovian.nixosModules.default ];
+
+          services = {
+            displayManager.gdm.enable = lib.mkForce false;
+          };
+
+          jovian = {
+            steam = {
+              enable = true;
+
+              autoStart = true;
+              user = "tuhana";
+
+              desktopSession = "gnome";
+            };
+          };
+        };
 
         services.fwupd.enable = true;
 
