@@ -1,6 +1,7 @@
-{
+# Maybe this file is not the best place to have this?
+_: {
   caden.audio = {
-    nixos = {
+    nixos = _: {
       services.pipewire = {
         enable = true;
 

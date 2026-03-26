@@ -1,3 +1,9 @@
-{
-  caden.programs.provides.vscode.homeManager.programs.vscode.enable = true;
+_: {
+  caden.programs = {
+    provides.vscode = {
+      homeManager = _: {
+        programs.vscode.enable = true;
+      };
+    };
+  };
 }

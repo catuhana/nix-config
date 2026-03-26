@@ -1,3 +1,9 @@
-{
-  caden.programs.provides.starship.homeManager.programs.starship.enable = true;
+_: {
+  caden.programs = {
+    provides.starship = {
+      homeManager = _: {
+        programs.starship.enable = true;
+      };
+    };
+  };
 }

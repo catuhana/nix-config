@@ -4,121 +4,168 @@
   ...
 }:
 {
-  den.hosts.x86_64-linux.MateBookD14 = {
-    users.tuhana = { };
+  den.hosts = {
+    x86_64-linux = {
+      MateBookD14 = {
+        users.tuhana = { };
+      };
+    };
   };
 
-  den.aspects.MateBookD14 = {
-    includes = [
-      <caden/audio>
+  den.aspects = {
+    MateBookD14 = {
+      includes = [
+        <caden/audio>
 
-      <caden/boot>
-      <caden/boot/secure-boot>
-      <caden/boot/silent-boot>
-      <caden/boot/plymouth>
+        <caden/boot>
+        <caden/boot/secure-boot>
+        <caden/boot/silent-boot>
+        <caden/boot/plymouth>
 
-      <caden/gnome>
+        <caden/gnome>
 
-      <caden/locale>
-      <caden/locale/tr_TR>
+        <caden/locale>
+        <caden/locale/tr_TR>
 
-      <caden/networking>
-      <caden/networking/resolved>
-      <caden/networking/resolved/mdns>
-      <caden/networking/dns/cloudflare>
+        <caden/networking>
+        <caden/networking/resolved>
+        <caden/networking/resolved/mdns>
+        <caden/networking/dns/cloudflare>
 
-      <caden/programs/git>
-      <caden/programs/msedit>
+        <caden/programs/git>
+        <caden/programs/msedit>
 
-      <caden/security/apparmor>
-      <caden/security/tpm2>
+        <caden/security/apparmor>
+        <caden/security/tpm2>
 
-      <caden/services/flatpak>
-      <caden/services/openssh>
-      <caden/services/scx>
+        <caden/services/flatpak>
+        <caden/services/openssh>
+        <caden/services/scx>
 
-      <caden/time>
-      <caden/time/Istanbul>
-    ];
+        <caden/time>
+        <caden/time/Istanbul>
+      ];
 
-    nixos =
-      { pkgs, lib, ... }:
-      {
-        imports = [ inputs.disko.nixosModules.default ];
+      nixos =
+        { pkgs, lib, ... }:
+        {
+          imports = [ inputs.disko.nixosModules.default ];
 
-        specialisation.gaming.configuration = {
-          imports = [ inputs.jovian.nixosModules.default ];
+          specialisation.gaming.configuration = {
+            imports = [ inputs.jovian.nixosModules.default ];
 
-          services = {
-            displayManager.gdm.enable = lib.mkForce false;
-          };
+            services = {
+              displayManager.gdm.enable = lib.mkForce false;
+            };
 
-          jovian = {
-            steam = {
-              enable = true;
+            jovian = {
+              steam = {
+                enable = true;
 
-              autoStart = true;
-              user = "tuhana";
+                autoStart = true;
+                user = "tuhana";
 
-              desktopSession = "gnome";
+                desktopSession = "gnome";
+              };
             };
           };
-        };
 
-        services.fwupd.enable = true;
+          services.fwupd.enable = true;
 
-        hardware = {
-          enableAllFirmware = true;
-          cpu.intel.updateMicrocode = true;
-          graphics.extraPackages = [ pkgs.intel-media-driver ];
-        };
+          hardware = {
+            enableAllFirmware = true;
+            cpu.intel.updateMicrocode = true;
+            graphics.extraPackages = [ pkgs.intel-media-driver ];
+          };
 
-        #boot.kernelParams = [
-        #  "xe.force_probe=46a6"
-        #  "i915.force_probe=!46a6"
-        #];
+          #boot.kernelParams = [
+          #  "xe.force_probe=46a6"
+          #  "i915.force_probe=!46a6"
+          #];
 
-        disko.devices = {
-          disk = {
-            main = {
-              device = "/dev/nvme0n1";
-              type = "disk";
+          disko.devices = {
+            disk = {
+              main = {
+                device = "/dev/nvme0n1";
+                type = "disk";
 
-              content = {
-                type = "gpt";
+                content = {
+                  type = "gpt";
 
-                partitions = {
-                  esp = {
-                    name = "boot";
-                    type = "EF00";
-                    size = "1G";
-
-                    content = {
-                      type = "filesystem";
-                      format = "vfat";
-
-                      mountpoint = "/boot";
-                      mountOptions = [ "umask=0077" ];
-                    };
-                  };
-
-                  luks = {
-                    name = "luks";
-                    size = "100%";
-
-                    content = {
-                      name = "cryptroot";
-                      type = "luks";
-
-                      settings = {
-                        allowDiscards = true;
-                        bypassWorkqueues = true;
-                        crypttabExtraOpts = [ "tpm2-device=auto" ];
-                      };
+                  partitions = {
+                    esp = {
+                      name = "boot";
+                      type = "EF00";
+                      size = "1G";
 
                       content = {
-                        type = "lvm_pv";
-                        vg = "system";
+                        type = "filesystem";
+                        format = "vfat";
+
+                        mountpoint = "/boot";
+                        mountOptions = [ "umask=0077" ];
+                      };
+                    };
+
+                    luks = {
+                      name = "luks";
+                      size = "100%";
+
+                      content = {
+                        name = "cryptroot";
+                        type = "luks";
+
+                        settings = {
+                          allowDiscards = true;
+                          bypassWorkqueues = true;
+                          crypttabExtraOpts = [ "tpm2-device=auto" ];
+                        };
+
+                        content = {
+                          type = "lvm_pv";
+                          vg = "system";
+                        };
+                      };
+                    };
+                  };
+                };
+              };
+            };
+
+            lvm_vg = {
+              system = {
+                type = "lvm_vg";
+
+                lvs = {
+                  swap = {
+                    size = "20G";
+                    content = {
+                      type = "swap";
+                      resumeDevice = true;
+                    };
+                  };
+
+                  root = {
+                    size = "100%";
+                    content = {
+                      type = "btrfs";
+                      extraArgs = [ "-f" ];
+
+                      subvolumes = {
+                        "@" = {
+                          mountpoint = "/";
+                          mountOptions = [
+                            "compress=zstd"
+                            "noatime"
+                          ];
+                        };
+                        "@home" = {
+                          mountpoint = "/home";
+                          mountOptions = [
+                            "compress=zstd"
+                            "noatime"
+                          ];
+                        };
                       };
                     };
                   };
@@ -127,49 +174,8 @@
             };
           };
 
-          lvm_vg = {
-            system = {
-              type = "lvm_vg";
-
-              lvs = {
-                swap = {
-                  size = "20G";
-                  content = {
-                    type = "swap";
-                    resumeDevice = true;
-                  };
-                };
-
-                root = {
-                  size = "100%";
-                  content = {
-                    type = "btrfs";
-                    extraArgs = [ "-f" ];
-
-                    subvolumes = {
-                      "@" = {
-                        mountpoint = "/";
-                        mountOptions = [
-                          "compress=zstd"
-                          "noatime"
-                        ];
-                      };
-                      "@home" = {
-                        mountpoint = "/home";
-                        mountOptions = [
-                          "compress=zstd"
-                          "noatime"
-                        ];
-                      };
-                    };
-                  };
-                };
-              };
-            };
-          };
+          system.stateVersion = "26.05";
         };
-
-        system.stateVersion = "26.05";
-      };
+    };
   };
 }

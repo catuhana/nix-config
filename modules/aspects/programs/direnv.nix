@@ -1,6 +1,13 @@
-{
-  caden.programs.provides.direnv.homeManager.programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
+_: {
+  caden.programs = {
+    provides.direnv = {
+      homeManager = _: {
+        programs.direnv = {
+          enable = true;
+
+          nix-direnv.enable = true;
+        };
+      };
+    };
   };
 }

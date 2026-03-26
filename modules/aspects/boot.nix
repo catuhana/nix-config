@@ -29,40 +29,46 @@
         };
       };
 
-    provides.secure-boot.nixos =
-      { pkgs, ... }:
-      {
-        imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];
+    provides.secure-boot = {
+      nixos =
+        { pkgs, ... }:
+        {
+          imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];
 
-        environment.systemPackages = [ pkgs.sbctl ];
+          environment.systemPackages = [ pkgs.sbctl ];
 
-        boot = {
-          loader.systemd-boot.enable = false;
+          boot = {
+            loader.systemd-boot.enable = false;
 
-          lanzaboote = {
-            enable = true;
+            lanzaboote = {
+              enable = true;
 
-            pkiBundle = "/var/lib/sbctl";
+              pkiBundle = "/var/lib/sbctl";
 
-            autoGenerateKeys.enable = true;
+              autoGenerateKeys.enable = true;
+            };
           };
         };
-      };
+    };
 
-    provides.silent-boot.nixos = {
-      boot = {
-        kernelParams = [
-          "quiet"
-          "udev.log_level=3"
-        ];
+    provides.silent-boot = {
+      nixos = _: {
+        boot = {
+          kernelParams = [
+            "quiet"
+            "udev.log_level=3"
+          ];
 
-        consoleLogLevel = 0;
-        initrd.verbose = false;
+          consoleLogLevel = 0;
+          initrd.verbose = false;
+        };
       };
     };
 
-    provides.plymouth.nixos = {
-      boot.plymouth.enable = true;
+    provides.plymouth = {
+      nixos = _: {
+        boot.plymouth.enable = true;
+      };
     };
   };
 }

@@ -1,12 +1,16 @@
-{
-  caden.services.provides.openssh.nixos = {
-    services.openssh = {
-      enable = true;
-      startWhenNeeded = true;
+_: {
+  caden.services = {
+    provides.openssh = {
+      nixos = _: {
+        services.openssh = {
+          enable = true;
+          startWhenNeeded = true;
 
-      settings = {
-        PasswordAuthentication = false;
-        PermitRootLogin = "no";
+          settings = {
+            PasswordAuthentication = false;
+            PermitRootLogin = "no";
+          };
+        };
       };
     };
   };

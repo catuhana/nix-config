@@ -1,3 +1,9 @@
-{
-  caden.programs.provides.gh.homeManager.programs.gh.enable = true;
+_: {
+  caden.programs = {
+    provides.gh = {
+      homeManager = _: {
+        programs.gh.enable = true;
+      };
+    };
+  };
 }

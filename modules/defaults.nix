@@ -40,7 +40,9 @@
           };
         };
 
-      homeManager.nixpkgs.config.allowUnfree = true;
+      homeManager = _: {
+        nixpkgs.config.allowUnfree = true;
+      };
     };
 
     schema.user =

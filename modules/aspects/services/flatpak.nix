@@ -1,5 +1,9 @@
-{
-  caden.services.provides.flatpak.nixos = {
-    services.flatpak.enable = true;
+_: {
+  caden.services = {
+    provides.flatpak = {
+      nixos = _: {
+        services.flatpak.enable = true;
+      };
+    };
   };
 }
