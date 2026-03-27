@@ -1,5 +1,5 @@
 {
-  __findFile ? __findFile,
+  __findFile,
   ...
 }:
 {

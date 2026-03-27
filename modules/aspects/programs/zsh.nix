@@ -1,6 +1,6 @@
 # TODO: Remove, I don't wanna use ZSH I think.
 {
-  __findFile ? __findFile,
+  __findFile,
   ...
 }:
 {

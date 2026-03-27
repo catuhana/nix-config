@@ -1,6 +1,6 @@
 {
   inputs,
-  __findFile ? __findFile,
+  __findFile,
   ...
 }:
 {
