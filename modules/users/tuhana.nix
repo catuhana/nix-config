@@ -6,15 +6,12 @@
   den.aspects = {
     tuhana = {
       includes = [
-        (<den/user-shell> "zsh")
         <den/primary-user>
 
         <caden/gnome/shell>
         <caden/gnome/shell/extensions>
         <caden/gnome/shell/settings>
 
-        <caden/programs/zsh>
-        <caden/programs/zsh/plugins>
         <caden/programs/gh>
         <caden/programs/direnv>
         <caden/programs/vscode>
