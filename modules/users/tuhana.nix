@@ -6,6 +6,7 @@
   den.aspects = {
     tuhana = {
       includes = [
+        (<den/user-shell> "bash")
         <den/primary-user>
 
         <caden/gnome/shell>
@@ -15,7 +16,6 @@
         <caden/programs/gh>
         <caden/programs/direnv>
         <caden/programs/vscode>
-        <caden/programs/starship>
         <caden/programs/git>
         <caden/programs/git/users/tuhana>
       ];
