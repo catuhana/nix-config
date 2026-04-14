@@ -21,6 +21,11 @@
         {
           nixpkgs.config.allowUnfree = true;
 
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+          };
+
           nix = {
             package = pkgs.lixPackageSets.latest.lix;
 
@@ -39,16 +44,14 @@
             optimise.automatic = true;
           };
         };
-
-      homeManager = _: {
-        nixpkgs.config.allowUnfree = true;
-      };
     };
 
     schema.user =
       { lib, ... }:
       {
-        config.classes = lib.mkDefault [ "homeManager" ];
+        config = {
+          classes = lib.mkDefault [ "homeManager" ];
+        };
       };
   };
 }

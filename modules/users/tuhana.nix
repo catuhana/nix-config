@@ -13,11 +13,12 @@
         <caden/gnome/shell/extensions>
         <caden/gnome/shell/settings>
 
-        <caden/programs/gh>
+        <caden/programs/claude-desktop>
         <caden/programs/direnv>
-        <caden/programs/vscode>
+        <caden/programs/gh>
         <caden/programs/git>
         <caden/programs/git/users/tuhana>
+        <caden/programs/vscode>
       ];
 
       nixos = _: {
