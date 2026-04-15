@@ -43,8 +43,6 @@
         <caden/services/scx>
         <caden/services/thermald>
         <caden/services/usbmuxd>
-
-        <caden/virtualisation/waydroid>
       ];
 
       nixos =
