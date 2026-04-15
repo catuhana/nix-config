@@ -31,10 +31,6 @@
           ];
         };
       };
-
-      homeManager = _: {
-        home.stateVersion = "26.05";
-      };
     };
   };
 }

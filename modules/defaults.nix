@@ -43,7 +43,13 @@
 
             optimise.automatic = true;
           };
+
+          system.stateVersion = "26.05";
         };
+
+      homeManager = _: {
+        home.stateVersion = "26.05";
+      };
     };
 
     schema.user =
