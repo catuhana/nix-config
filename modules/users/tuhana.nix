@@ -12,7 +12,7 @@
               shell = {
                 settings = {
                   appearance = {
-                    accent-colour = "slate";
+                    accent-colour = "purple";
                   };
                 };
               };
