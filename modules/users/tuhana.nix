@@ -37,6 +37,7 @@
         <den/primary-user>
 
         <caden/gnome/shell>
+        <caden/gnome/shell/extensions>
 
         <caden/programs/claude-desktop>
         <caden/programs/direnv>
