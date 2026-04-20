@@ -38,6 +38,7 @@
 
         <caden/gnome/shell>
         <caden/gnome/shell/extensions>
+        <caden/gnome/shell/settings>
 
         <caden/programs/claude-desktop>
         <caden/programs/direnv>
