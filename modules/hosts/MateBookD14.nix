@@ -15,28 +15,30 @@
   den.aspects = {
     MateBookD14 = {
       includes = [
-        <caden/audio>
+        <caden/core/audio>
 
-        <caden/boot>
-        <caden/boot/secure-boot>
-        <caden/boot/silent-boot>
-        <caden/boot/plymouth>
+        # I think secure boot and whatnot (and others too) should also be
+        # schema-ised just like the GNOME one. Investigate.
+        <caden/core/boot>
+        <caden/core/boot/secure-boot>
+        <caden/core/boot/silent-boot>
+        <caden/core/boot/plymouth>
+
+        <caden/core/locale>
+        <caden/core/locale/tr_TR>
+
+        <caden/core/networking>
+        <caden/core/networking/resolved>
+        <caden/core/networking/resolved/mdns>
+        <caden/core/networking/dns/cloudflare>
+
+        <caden/core/security/apparmor>
+        <caden/core/security/tpm2>
 
         <caden/gnome>
 
-        <caden/locale>
-        <caden/locale/tr_TR>
-
-        <caden/networking>
-        <caden/networking/resolved>
-        <caden/networking/resolved/mdns>
-        <caden/networking/dns/cloudflare>
-
         <caden/programs/git>
         <caden/programs/msedit>
-
-        <caden/security/apparmor>
-        <caden/security/tpm2>
 
         <caden/services/flatpak>
         <caden/services/openssh>
