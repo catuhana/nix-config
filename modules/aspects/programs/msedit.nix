@@ -10,8 +10,8 @@ _: {
             systemPackages = [ pkgs.msedit ];
 
             variables = {
-              EDITOR = "msedit";
-              VISUAL = "msedit";
+              EDITOR = "edit";
+              VISUAL = "edit";
             };
           };
         };
