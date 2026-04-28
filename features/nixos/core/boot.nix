@@ -6,11 +6,9 @@
   caden.core = {
     provides.boot = {
       nixos =
-        { pkgs, lib, ... }:
+        { lib, ... }:
         {
           boot = {
-            kernelPackages = pkgs.linuxPackages_xanmod_latest;
-
             loader = {
               systemd-boot = {
                 enable = lib.mkDefault true;
