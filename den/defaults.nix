@@ -1,4 +1,5 @@
 {
+  inputs,
   __findFile,
   ...
 }:
@@ -20,7 +21,10 @@
       os =
         { pkgs, ... }:
         {
-          nixpkgs.config.allowUnfree = true;
+          nixpkgs = {
+            config.allowUnfree = true;
+            overlays = [ inputs.claude-desktop.overlays.default ];
+          };
 
           home-manager = {
             useGlobalPkgs = true;
@@ -52,13 +56,5 @@
         home.stateVersion = "26.05";
       };
     };
-
-    schema.user =
-      { lib, ... }:
-      {
-        config = {
-          classes = lib.mkDefault [ "homeManager" ];
-        };
-      };
   };
 }

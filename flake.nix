@@ -33,5 +33,29 @@
     };
   };
 
-  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
+  outputs =
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        (inputs.import-tree ./den)
+        (inputs.import-tree ./features)
+        (inputs.import-tree ./hosts)
+        (inputs.import-tree ./users)
+      ];
+
+      perSystem =
+        { pkgs, ... }:
+        {
+          devShells.default = pkgs.mkShellNoCC {
+            packages = builtins.attrValues {
+              inherit (pkgs)
+                nixd
+                nixfmt
+                ;
+            };
+          };
+
+          formatter = pkgs.nixfmt-tree;
+        };
+    };
 }
