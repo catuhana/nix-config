@@ -1,24 +1,26 @@
 _: {
-  caden.core = {
-    provides.security = {
-      provides.apparmor = {
-        nixos =
-          { pkgs, ... }:
-          {
-            security.apparmor = {
-              enable = true;
-              packages = [ pkgs.apparmor-profiles ];
+  caden.nixos = {
+    provides.core = {
+      provides.security = {
+        provides.apparmor = {
+          nixos =
+            { pkgs, ... }:
+            {
+              security.apparmor = {
+                enable = true;
+                packages = [ pkgs.apparmor-profiles ];
+              };
             };
-          };
-      };
+        };
 
-      provides.tpm2 = {
-        nixos = _: {
-          security.tpm2 = {
-            enable = true;
+        provides.tpm2 = {
+          nixos = _: {
+            security.tpm2 = {
+              enable = true;
 
-            pkcs11.enable = true;
-            tctiEnvironment.enable = true;
+              pkcs11.enable = true;
+              tctiEnvironment.enable = true;
+            };
           };
         };
       };

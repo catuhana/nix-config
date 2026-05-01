@@ -1,17 +1,19 @@
 _: {
-  caden.services = {
-    provides.usbmuxd = {
-      nixos =
-        { pkgs, ... }:
-        {
-          services.usbmuxd = {
-            enable = true;
+  caden.nixos = {
+    provides.services = {
+      provides.usbmuxd = {
+        nixos =
+          { pkgs, ... }:
+          {
+            services.usbmuxd = {
+              enable = true;
 
-            package = pkgs.usbmuxd2;
+              package = pkgs.usbmuxd2;
+            };
+
+            environment.systemPackages = [ pkgs.libimobiledevice ];
           };
-
-          environment.systemPackages = [ pkgs.libimobiledevice ];
-        };
+      };
     };
   };
 }

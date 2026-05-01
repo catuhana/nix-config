@@ -2,17 +2,19 @@
 # and the user will choose which language to
 # use in their DE or whatever.
 _: {
-  caden.core = {
-    provides.locale = {
-      nixos = _: {
-        i18n = {
-          defaultLocale = "en_GB.UTF-8";
-        };
-      };
-
-      provides.tr_TR = {
+  caden.nixos = {
+    provides.core = {
+      provides.locale = {
         nixos = _: {
-          i18n.extraLocales = [ "tr_TR.UTF-8/UTF-8" ];
+          i18n = {
+            defaultLocale = "en_GB.UTF-8";
+          };
+        };
+
+        provides.tr_TR = {
+          nixos = _: {
+            i18n.extraLocales = [ "tr_TR.UTF-8/UTF-8" ];
+          };
         };
       };
     };

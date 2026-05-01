@@ -1,8 +1,10 @@
 _: {
-  caden.programs = {
-    provides.git = {
-      nixos = _: {
-        programs.git.enable = true;
+  caden.nixos = {
+    provides.programs = {
+      provides.git = {
+        nixos = _: {
+          programs.git.enable = true;
+        };
       };
     };
   };
