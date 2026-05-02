@@ -35,9 +35,11 @@
         <caden/home/gnome/shell/settings>
 
         <caden/home/programs/claude-desktop>
+        <caden/home/programs/comma>
         <caden/home/programs/direnv>
         <caden/home/programs/gh>
         <caden/home/programs/git>
+        <caden/home/programs/nh>
         <caden/home/programs/vscode>
       ];
 
